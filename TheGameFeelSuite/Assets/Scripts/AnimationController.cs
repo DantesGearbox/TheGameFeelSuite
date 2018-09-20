@@ -7,11 +7,13 @@ public class AnimationController : MonoBehaviour {
 	CharacterController2D cc;
 	Rigidbody2D rb;
 	Animator anim;
+	Attacking atk;
 
 	//Animation states
 	public bool idle = true;
 	public bool running = false;
 	public bool jumping = false;
+	public bool attacking = false;
 
 
 	// Use this for initialization
@@ -19,6 +21,7 @@ public class AnimationController : MonoBehaviour {
 		cc = GetComponent<CharacterController2D>();
 		rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		atk = GetComponent<Attacking>();
 	}
 	
 	// Update is called once per frame
@@ -36,7 +39,17 @@ public class AnimationController : MonoBehaviour {
 			anim.SetTrigger("Jumping");
 		}
 
-		if(cc.GetInputDirection() == 1.0f){
+		if (atk.isAttacking) {
+			cc.PauseThePlayer();
+			anim.SetBool("IsAttacking", true);
+		}
+
+		if (!atk.isAttacking) {
+			cc.UnpauseThePlayer();
+			anim.SetBool("IsAttacking", false);
+		}
+
+		if (cc.GetInputDirection() == 1.0f){
 			transform.localRotation = Quaternion.Euler(0, 0, 0);
 		}
 
