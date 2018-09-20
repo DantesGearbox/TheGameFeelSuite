@@ -9,13 +9,6 @@ public class AnimationController : MonoBehaviour {
 	Animator anim;
 	Attacking atk;
 
-	//Animation states
-	public bool idle = true;
-	public bool running = false;
-	public bool jumping = false;
-	public bool attacking = false;
-
-
 	// Use this for initialization
 	void Start () {
 		cc = GetComponent<CharacterController2D>();

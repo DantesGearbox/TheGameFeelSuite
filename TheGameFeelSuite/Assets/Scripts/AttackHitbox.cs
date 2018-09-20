@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalAttack : MonoBehaviour {
+public class AttackHitbox : MonoBehaviour {
 
 	private bool active = false;
 
 	private float timer = 0.0f;
 	private float activeTime = 3.0f;
-	public float hitstun = 30.0f * (1/60.0f);
 
-	public void DoAttack(float activeTime, float hitstun){
+	public void DoAttack(float activeTime){
 		this.activeTime = activeTime;
-		this.hitstun = hitstun;
 		active = true;
 	}
 
@@ -24,6 +22,5 @@ public class NormalAttack : MonoBehaviour {
 				Destroy(gameObject);
 			}
 		}
-
 	}
 }
